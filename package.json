@@ -1,10 +1,10 @@
 {
   "dependencies": {
     "@discordjs/core": "^0.6.0",
-    "@discordjs/voice": "github:discordjs/voice",
-    "discord-api-types": "^0.37.43",
+    "@discordjs/voice": "^0.16.0",
     "discord.js": "^14.11.0",
     "ffmpeg-static": "^5.1.0",
+    "libsodium-wrappers": "^0.7.11",
     "sodium-native": "^4.0.3"
   }
 }
