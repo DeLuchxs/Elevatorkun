@@ -10,6 +10,7 @@ module.exports = {
     async execute(interaction) {
         const voiceChannel = interaction.member.voice.channel;
         if(!voiceChannel) return interaction.reply('You need to be in a voice channel to use this command.');
+        let connection;
         try {
             const connection = joinVoiceChannel({
                 channelId: interaction.member.voice.channel.id,
@@ -28,6 +29,7 @@ module.exports = {
             this.connection = connection;
             return interaction.reply('Joined the voice channel.');
         } catch (error) {
+            if(connection)
             connection.destroy();
             return interaction.reply('There was an error connecting to the voice channel.');
         }
