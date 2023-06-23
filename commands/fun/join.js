@@ -19,14 +19,13 @@ module.exports = {
             });
             const player = createAudioPlayer();
             const resource = createAudioResource(path.join(__dirname, 'audio', 'elevator.mp3'), {
-                inlineVolume: true
+                inlineVolume: true,
             });
             player.on('idle', () => {
-                player.play();
+                player.play(resource);
             });
             connection.subscribe(player);
             player.play(resource);
-            this.connection = connection;
             return interaction.reply('Joined the voice channel.');
         } catch (error) {
             if(connection)
