@@ -18,14 +18,13 @@ module.exports = {
                 adapterCreator: interaction.guild.voiceAdapterCreator,
             });
             const player = createAudioPlayer();
-            const resource = createAudioResource(path.join(__dirname, 'audio', 'elevator.mp3'), {
+            const resource = createAudioResource(path.join(__dirname, '..', '..', 'audio', 'elevator.mp3'), {
                 inlineVolume: true,
             });
+            connection.subscribe(player);
             player.on('idle', () => {
                 player.play(resource);
             });
-            connection.subscribe(player);
-            player.play(resource);
             return interaction.reply('Joined the voice channel.');
         } catch (error) {
             if(connection)
