@@ -18,9 +18,10 @@ module.exports = {
                 adapterCreator: interaction.guild.voiceAdapterCreator,
             });
             const player = createAudioPlayer();
-            const resource = createAudioResource(path.join(__dirname, '..', '..', 'audio', 'elevator.mp3'), {
-                inlineVolume: true,
+            let resource = createAudioResource(createReadStream(path.join(__dirname, '..', '..', 'audio', 'elevator.ogg')), {
+                inputType: StreamType.OggOpus,
             });
+            
             connection.subscribe(player);
             player.on('idle', () => {
                 player.play(resource);
