@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { createReadStream } = require('node:fs');
 
-const { joinVoiceChannel, createAudioPlayer, createAudioResource, StreamType } = require('@discordjs/voice');
+const { joinVoiceChannel, createAudioPlayer, createAudioResource, StreamType, getVoiceConnection } = require('@discordjs/voice');
 const path = require('node:path');
 
 module.exports = {
@@ -12,6 +12,7 @@ module.exports = {
         const voiceChannel = interaction.member.voice.channel;
         if(!voiceChannel) return interaction.reply('You need to be in a voice channel to use this command.');
         let connection;
+        
         try {
             connection = joinVoiceChannel({
                 channelId: interaction.member.voice.channel.id,
@@ -24,10 +25,10 @@ module.exports = {
             });
             
             connection.subscribe(player);
-            player.on('idle', () => {
-                player.play(resource);
-            });
-
+            player.play(resource);
+            
+            console.log(player);
+            console.log(player.state.status);
             return interaction.reply('Joined the voice channel.');
         } catch (error) {
             if(connection)
