@@ -22,10 +22,11 @@ module.exports = {
             let resource = createAudioResource(createReadStream(path.join(__dirname, '..', '..', 'audio', 'elevator.ogg')), {
                 inputType: StreamType.OggOpus,
             });
-           
+            
             connection.subscribe(player);
-            player.play(resource);
-            console.log(player);
+            player.on('idle', () => {
+                player.play(resource);
+            });
 
             return interaction.reply('Joined the voice channel.');
         } catch (error) {
