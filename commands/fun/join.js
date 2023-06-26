@@ -25,6 +25,7 @@ module.exports = {
            
             connection.subscribe(player);
             player.play(resource);
+            console.log(player);
 
             return interaction.reply('Joined the voice channel.');
         } catch (error) {
